@@ -12,7 +12,8 @@ function load_island() {
     if (dist <= 2000 && !loaded) {
         native.setIplSetEnabled('HeistIsland', true);
         loaded = true;
-    } else (dist > 2000 && loaded) {
+    } 
+    else if (dist > 2000 && loaded) {
         native.setIplSetEnabled('HeistIsland', false);
         loaded = false;
     }
