@@ -3,124 +3,128 @@ import * as native from 'natives';
 
 let player = alt.Player.local;
 let pos = { x: 4895.28, y: -5744.58, z: 26.351 };
-let status = false;
+let ipls = [
+"h4_islandairstrip",
+"h4_islandairstrip_props",
+"h4_islandx_mansion"  ,
+ "h4_islandx_mansion_props"  ,
+"h4_islandx_props"  ,
+ "h4_islandxdock"  ,
+ "h4_islandxdock_props"  ,
+ "h4_islandxdock_props_2"  ,
+ "h4_islandxtower"  ,
+ "h4_islandx_maindock"  ,
+ "h4_islandx_maindock_props"  ,
+ "h4_islandx_maindock_props_2"  ,
+ "h4_IslandX_Mansion_Vault"  ,
+ "h4_islandairstrip_propsb"  ,
+ "h4_beach"  ,
+ "h4_beach_props"  ,
+ "h4_beach_bar_props"  ,
+ "h4_islandx_barrack_props"  ,
+ "h4_islandx_checkpoint"  ,
+ "h4_islandx_checkpoint_props"  ,
+ "h4_islandx_Mansion_Office"  ,
+ "h4_islandx_Mansion_LockUp_01"  ,
+ "h4_islandx_Mansion_LockUp_02"  ,
+ "h4_islandx_Mansion_LockUp_03"  ,
+ "h4_islandairstrip_hangar_props"  ,
+ "h4_IslandX_Mansion_B"  ,
+ "h4_islandairstrip_doorsclosed"  ,
+ "h4_Underwater_Gate_Closed"  ,
+ "h4_mansion_gate_closed"  ,
+ "h4_aa_guns"  ,
+ "h4_IslandX_Mansion_GuardFence"  ,
+ "h4_IslandX_Mansion_Entrance_Fence"  ,
+ "h4_IslandX_Mansion_B_Side_Fence"  ,
+ "h4_IslandX_Mansion_Lights"  ,
+ "h4_islandxcanal_props"  ,
+ "h4_beach_props_party"  ,
+ "h4_islandX_Terrain_props_06_a"  ,
+ "h4_islandX_Terrain_props_06_b"  ,
+ "h4_islandX_Terrain_props_06_c"  ,
+ "h4_islandX_Terrain_props_05_a"  ,
+ "h4_islandX_Terrain_props_05_b"  ,
+ "h4_islandX_Terrain_props_05_c"  ,
+ "h4_islandX_Terrain_props_05_d"  ,
+ "h4_islandX_Terrain_props_05_e"  ,
+ "h4_islandX_Terrain_props_05_f"  ,
+ "H4_islandx_terrain_01"  ,
+ "H4_islandx_terrain_02"  ,
+ "H4_islandx_terrain_03"  ,
+ "H4_islandx_terrain_04"  ,
+ "H4_islandx_terrain_05"  ,
+ "H4_islandx_terrain_06"  ,
+ "h4_ne_ipl_00"  ,
+ "h4_ne_ipl_01"  ,
+ "h4_ne_ipl_02"  ,
+ "h4_ne_ipl_03"  ,
+ "h4_ne_ipl_04"  ,
+ "h4_ne_ipl_05"  ,
+ "h4_ne_ipl_06"  ,
+ "h4_ne_ipl_07"  ,
+ "h4_ne_ipl_08"  ,
+ "h4_ne_ipl_09"  ,
+ "h4_nw_ipl_00"  ,
+ "h4_nw_ipl_01"  ,
+ "h4_nw_ipl_02"  ,
+ "h4_nw_ipl_03"  ,
+ "h4_nw_ipl_04"  ,
+ "h4_nw_ipl_05"  ,
+ "h4_nw_ipl_06"  ,
+ "h4_nw_ipl_07"  ,
+ "h4_nw_ipl_08"  ,
+ "h4_nw_ipl_09"  ,
+ "h4_se_ipl_00"  ,
+ "h4_se_ipl_01"  ,
+ "h4_se_ipl_02"  ,
+ "h4_se_ipl_03"  ,
+ "h4_se_ipl_04"  ,
+ "h4_se_ipl_05"  ,
+ "h4_se_ipl_06"  ,
+ "h4_se_ipl_07"  ,
+ "h4_se_ipl_08"  ,
+ "h4_se_ipl_09"  ,
+ "h4_sw_ipl_00"  ,
+ "h4_sw_ipl_01"  ,
+ "h4_sw_ipl_02"  ,
+ "h4_sw_ipl_03"  ,
+ "h4_sw_ipl_04"  ,
+ "h4_sw_ipl_05"  ,
+ "h4_sw_ipl_06"  ,
+ "h4_sw_ipl_07"  ,
+ "h4_sw_ipl_08"  ,
+ "h4_sw_ipl_09"  ,
+ "h4_islandx_mansion"  ,
+ "h4_islandxtower_veg"  ,
+ "h4_islandx_sea_mines"  ,
+ "h4_islandx",
+ "h4_islandx_barrack_hatch",
+ "h4_islandxdock_water_hatch",
+ "h4_beach_party",
+ "h4_mph4_terrain_01_grass_0",
+ "h4_mph4_terrain_01_grass_1",
+ "h4_mph4_terrain_02_grass_0",
+ "h4_mph4_terrain_02_grass_1",
+ "h4_mph4_terrain_02_grass_2",
+ "h4_mph4_terrain_02_grass_3",
+ "h4_mph4_terrain_04_grass_0",
+ "h4_mph4_terrain_04_grass_1",
+ "h4_mph4_terrain_04_grass_2",
+ "h4_mph4_terrain_04_grass_3",
+ "h4_mph4_terrain_05_grass_0",
+ "h4_mph4_terrain_06_grass_0",
+]
 
-alt.setInterval(load_island, 0)
+alt.setInterval(load_island, 500);
 
 function load_island() {
     let dist = native.getDistanceBetweenCoords(pos.x, pos.y, pos.z, player.pos.x, player.pos.y, player.pos.z, false);
     if (dist <= 2000){
         native.setIplSetEnabled('HeistIsland', true);
-        alt.requestIpl("h4_islandairstrip");
-        alt.requestIpl("h4_islandairstrip_props");
-        alt.requestIpl("h4_islandx_mansion");
-        alt.requestIpl("h4_islandx_mansion_props");
-        alt.requestIpl("h4_islandx_props");
-        alt.requestIpl("h4_islandxdock");
-        alt.requestIpl("h4_islandxdock_props");
-        alt.requestIpl("h4_islandxdock_props_2");
-        alt.requestIpl("h4_islandxtower");
-        alt.requestIpl("h4_islandx_maindock");
-        alt.requestIpl("h4_islandx_maindock_props");
-        alt.requestIpl("h4_islandx_maindock_props_2");
-        alt.requestIpl("h4_IslandX_Mansion_Vault");
-        alt.requestIpl("h4_islandairstrip_propsb");
-        alt.requestIpl("h4_beach");
-        alt.requestIpl("h4_beach_props");
-        alt.requestIpl("h4_beach_bar_props");
-        alt.requestIpl("h4_islandx_barrack_props");
-        alt.requestIpl("h4_islandx_checkpoint");
-        alt.requestIpl("h4_islandx_checkpoint_props");
-        alt.requestIpl("h4_islandx_Mansion_Office");
-        alt.requestIpl("h4_islandx_Mansion_LockUp_01");
-        alt.requestIpl("h4_islandx_Mansion_LockUp_02");
-        alt.requestIpl("h4_islandx_Mansion_LockUp_03");
-        alt.requestIpl("h4_islandairstrip_hangar_props");
-        alt.requestIpl("h4_IslandX_Mansion_B");
-        alt.requestIpl("h4_islandairstrip_doorsclosed");
-        alt.requestIpl("h4_Underwater_Gate_Closed");
-        alt.requestIpl("h4_mansion_gate_closed");
-        alt.requestIpl("h4_aa_guns");
-        alt.requestIpl("h4_IslandX_Mansion_GuardFence");
-        alt.requestIpl("h4_IslandX_Mansion_Entrance_Fence");
-        alt.requestIpl("h4_IslandX_Mansion_B_Side_Fence");
-        alt.requestIpl("h4_IslandX_Mansion_Lights");
-        alt.requestIpl("h4_islandxcanal_props");
-        alt.requestIpl("h4_beach_props_party");
-        alt.requestIpl("h4_islandX_Terrain_props_06_a");
-        alt.requestIpl("h4_islandX_Terrain_props_06_b");
-        alt.requestIpl("h4_islandX_Terrain_props_06_c");
-        alt.requestIpl("h4_islandX_Terrain_props_05_a");
-        alt.requestIpl("h4_islandX_Terrain_props_05_b");
-        alt.requestIpl("h4_islandX_Terrain_props_05_c");
-        alt.requestIpl("h4_islandX_Terrain_props_05_d");
-        alt.requestIpl("h4_islandX_Terrain_props_05_e");
-        alt.requestIpl("h4_islandX_Terrain_props_05_f");
-        alt.requestIpl("H4_islandx_terrain_01");
-        alt.requestIpl("H4_islandx_terrain_02");
-        alt.requestIpl("H4_islandx_terrain_03");
-        alt.requestIpl("H4_islandx_terrain_04");
-        alt.requestIpl("H4_islandx_terrain_05");
-        alt.requestIpl("H4_islandx_terrain_06");
-        alt.requestIpl("h4_ne_ipl_00");
-        alt.requestIpl("h4_ne_ipl_01");
-        alt.requestIpl("h4_ne_ipl_02");
-        alt.requestIpl("h4_ne_ipl_03");
-        alt.requestIpl("h4_ne_ipl_04");
-        alt.requestIpl("h4_ne_ipl_05");
-        alt.requestIpl("h4_ne_ipl_06");
-        alt.requestIpl("h4_ne_ipl_07");
-        alt.requestIpl("h4_ne_ipl_08");
-        alt.requestIpl("h4_ne_ipl_09");
-        alt.requestIpl("h4_nw_ipl_00");
-        alt.requestIpl("h4_nw_ipl_01");
-        alt.requestIpl("h4_nw_ipl_02");
-        alt.requestIpl("h4_nw_ipl_03");
-        alt.requestIpl("h4_nw_ipl_04");
-        alt.requestIpl("h4_nw_ipl_05");
-        alt.requestIpl("h4_nw_ipl_06");
-        alt.requestIpl("h4_nw_ipl_07");
-        alt.requestIpl("h4_nw_ipl_08");
-        alt.requestIpl("h4_nw_ipl_09");
-        alt.requestIpl("h4_se_ipl_00");
-        alt.requestIpl("h4_se_ipl_01");
-        alt.requestIpl("h4_se_ipl_02");
-        alt.requestIpl("h4_se_ipl_03");
-        alt.requestIpl("h4_se_ipl_04");
-        alt.requestIpl("h4_se_ipl_05");
-        alt.requestIpl("h4_se_ipl_06");
-        alt.requestIpl("h4_se_ipl_07");
-        alt.requestIpl("h4_se_ipl_08");
-        alt.requestIpl("h4_se_ipl_09");
-        alt.requestIpl("h4_sw_ipl_00");
-        alt.requestIpl("h4_sw_ipl_01");
-        alt.requestIpl("h4_sw_ipl_02");
-        alt.requestIpl("h4_sw_ipl_03");
-        alt.requestIpl("h4_sw_ipl_04");
-        alt.requestIpl("h4_sw_ipl_05");
-        alt.requestIpl("h4_sw_ipl_06");
-        alt.requestIpl("h4_sw_ipl_07");
-        alt.requestIpl("h4_sw_ipl_08");
-        alt.requestIpl("h4_sw_ipl_09");
-        alt.requestIpl("h4_islandx_mansion");
-        alt.requestIpl("h4_islandxtower_veg");
-        alt.requestIpl("h4_islandx_sea_mines");
-        alt.requestIpl("h4_islandx");
-        alt.requestIpl("h4_islandx_barrack_hatch");
-        alt.requestIpl("h4_islandxdock_water_hatch");
-        alt.requestIpl("h4_beach_party");
-        alt.requestIpl("h4_mph4_terrain_01_grass_0");
-        alt.requestIpl("h4_mph4_terrain_01_grass_1");
-        alt.requestIpl("h4_mph4_terrain_02_grass_0");
-        alt.requestIpl("h4_mph4_terrain_02_grass_1");
-        alt.requestIpl("h4_mph4_terrain_02_grass_2");
-        alt.requestIpl("h4_mph4_terrain_02_grass_3");
-        alt.requestIpl("h4_mph4_terrain_04_grass_0");
-        alt.requestIpl("h4_mph4_terrain_04_grass_1");
-        alt.requestIpl("h4_mph4_terrain_04_grass_2");
-        alt.requestIpl("h4_mph4_terrain_04_grass_3");
-        alt.requestIpl("h4_mph4_terrain_05_grass_0");
-        alt.requestIpl("h4_mph4_terrain_06_grass_0");
+        ipls.map(ipl => {
+            alt.requestIpl(ipl)
+        })
     }
     if (dist > 2000){
         native.setIplSetEnabled('HeistIsland', false);
